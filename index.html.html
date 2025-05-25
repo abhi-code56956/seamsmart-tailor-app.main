@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeamSmart - The Future of Tailoring</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --background-light: #F0F4FF; /* Very light blue */
+            --text-light: #1e293b; /* Slate 800 */
+            --primary-light: #2962FF; /* Deep blue */
+            --accent-light: #7986CB; /* Purple */
+
+            --background-dark: #1a202c; /* Dark blue-gray */
+            --text-dark: #e2e8f0; /* Slate 200 */
+            --primary-dark: #4A80FF; /* Brighter Deep blue */
+            --accent-dark: #9FA8DA; /* Lighter Purple */
+        }
+        html.dark {
+            --background: var(--background-dark);
+            --text: var(--text-dark);
+            --primary: var(--primary-dark);
+            --accent: var(--accent-dark);
+            --card-bg: #2d3748; /* Darker card */
+            --border-color: #4a5568;
+        }
+        html:not(.dark) {
+            --background: var(--background-light);
+            --text: var(--text-light);
+            --primary: var(--primary-light);
+            --accent: var(--accent-light);
+            --card-bg: #ffffff; 
+            --border-color: #e2e8f0;
+        }
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .primary-text { color: var(--primary); }
+        .accent-text { color: var(--accent); }
+        .primary-bg { background-color: var(--primary); }
+        .accent-bg { background-color: var(--accent); }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); }
+        .btn-primary { background-color: var(--primary); color: white; }
+        .btn-primary:hover { background-color: var(--accent); }
+        .section-title { color: var(--primary); }
+        .nav-link:hover { color: var(--accent); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 shadow-lg card">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="primary-text">
+                    <path d="M12 22a7 7 0 0 0 7-7h-4v-3h2.41c.23 0 .45-.09.61-.25.16-.16.25-.38.25-.61V3.73c0-.23-.09-.45-.25-.61a.862.862 0 0 0-.61-.25H15a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v1.41c0 .23.09.45.25.61.16.16.38.25.61.25H10l-2 2-2-2H4.87c-.23 0-.45.09-.61.25a.862.862 0 0 0-.25.61V12h2.41c.23 0 .45.09.61-.25.16-.16.25-.38.25.61V15H5a7 7 0 0 0 7 7Z"></path>
+                    <path d="M19 15c0 1.68-.61 3.2-1.62 4.38"></path>
+                </svg>
+                <span class="font-bold text-xl ml-2 primary-text">SeamSmart</span>
+            </div>
+            <div class="flex items-center">
+                <a href="#vision" class="nav-link px-3 py-2">Our Vision</a>
+                <a href="#features" class="nav-link px-3 py-2">Future Features</a>
+                <a href="#philosophy" class="nav-link px-3 py-2">Philosophy</a>
+                <button id="theme-toggle" class="ml-4 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                    <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.707 12.122l.707-.707a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="py-20 text-center">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-center mb-6 cursor-pointer" onclick="toggleQrCode()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="primary-text">
+                    <path d="M12 22a7 7 0 0 0 7-7h-4v-3h2.41c.23 0 .45-.09.61-.25.16-.16.25-.38.25-.61V3.73c0-.23-.09-.45-.25-.61a.862.862 0 0 0-.61-.25H15a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v1.41c0 .23.09.45.25.61.16.16.38.25.61.25H10l-2 2-2-2H4.87c-.23 0-.45.09-.61.25a.862.862 0 0 0-.25.61V12h2.41c.23 0 .45.09.61-.25.16-.16.25-.38.25.61V15H5a7 7 0 0 0 7 7Z"></path>
+                    <path d="M19 15c0 1.68-.61 3.2-1.62 4.38"></path>
+                </svg>
+                <h1 class="text-5xl font-bold primary-text ml-4">SeamSmart</h1>
+            </div>
+            <!-- QR Code Image Container - initially hidden -->
+            <div class="flex flex-col items-center">
+                 <img id="websiteQrCodeImg" src="" alt="Website QR Code - Click logo to generate/show" style="display:none; margin-top: 10px; border: 1px solid #ccc; padding: 5px; background-color: white;">
+                 <p id="qrHintMessage" class="text-center text-sm text-gray-500 mt-2" style="display:none;">Scan to visit our website. Click logo again to hide.</p>
+            </div>
+            <p class="text-xl mt-4 max-w-2xl mx-auto">
+                The future of tailoring is here. Intelligent, intuitive, and integrated.
+            </p>
+            <a href="#vision" class="mt-8 inline-block btn-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
+                Explore Our Vision
+            </a>
+        </div>
+    </header>
+
+    <!-- Our Vision Section -->
+    <section id="vision" class="py-16 card">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">Our Vision for SeamSmart</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img data-ai-hint="futuristic tailoring technology" src="https://placehold.co/600x400.png" alt="Futuristic Tailoring" class="rounded-lg shadow-xl">
+                </div>
+                <div class="prose prose-lg max-w-none">
+                    <p>At SeamSmart, we envision a world where technology empowers tailors, transforming their craft and business. We're not just building an app; we're crafting an ecosystem that bridges traditional tailoring artistry with modern digital efficiency.</p>
+                    <p>Our goal is to provide tailors with tools that streamline every aspect of their work, from precise digital measurements and efficient order management to AI-driven design suggestions and seamless customer communication. We aim to reduce administrative burdens, allowing tailors to focus on what they do best: creating beautiful, custom-fit garments.</p>
+                    <p>For customers, SeamSmart will offer a transparent and engaging experience, making it easier than ever to connect with skilled tailors, co-create designs, and receive perfectly tailored clothing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Features Section -->
+    <section id="features" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">Exciting Future Features</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full accent-bg text-white mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 primary-text">Advanced AI Design Suite</h3>
+                    <p>Go beyond suggestions. Expect AI tools for pattern generation, virtual try-ons using customer avatars, and trend forecasting integrated directly into your design workflow.</p>
+                </div>
+                <div class="card p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full accent-bg text-white mb-4">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 primary-text">Integrated Customer Portal</h3>
+                    <p>A dedicated space for customers to track their orders, view their measurement history, approve designs, and communicate directly with their tailor, enhancing engagement and satisfaction.</p>
+                </div>
+                <div class="card p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full accent-bg text-white mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 primary-text">Smart Fabric & Inventory Linking</h3>
+                    <p>Connect with fabric suppliers, manage your inventory digitally, and even allow AI to suggest fabric choices based on design, season, and customer preferences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Philosophy Section -->
+    <section id="philosophy" class="py-16 card">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">Our Design Philosophy</h2>
+            <div class="max-w-3xl mx-auto prose prose-lg">
+                <p>SeamSmart is built on the principles of:</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>User-Centricity:</strong> Every feature is designed with the tailor and their customer in mind, focusing on ease of use and real-world applicability.</li>
+                    <li><strong>Simplicity & Power:</strong> We believe in providing powerful tools that are intuitive and don't require extensive technical knowledge.</li>
+                    <li><strong>Integration:</strong> Connecting various aspects of the tailoring business into one cohesive platform for maximum efficiency.</li>
+                    <li><strong>Innovation:</strong> Continuously exploring new technologies like AI to enhance the creative and business potential of tailors.</li>
+                    <li><strong>Respect for Craft:</strong> Technology should augment, not replace, the skill and artistry of tailoring.</li>
+                </ul>
+                <p>Our commitment is to evolve SeamSmart alongside the needs of the tailoring community, ensuring it remains a valuable partner in their success.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6 section-title">Ready to Experience the Future?</h2>
+            <p class="text-lg mb-8 max-w-xl mx-auto">
+                Join the SeamSmart platform and take your tailoring business to new heights.
+            </p>
+            <a href="/vendor/login" class="btn-primary font-semibold py-3 px-10 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
+                Vendor Login / Register
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t" style="border-color: var(--border-color);">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm">&copy; <span id="currentYear"></span> SeamSmart. All rights reserved.</p>
+            <p class="text-xs mt-1">Empowering Tailors, Crafting the Future.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+        const htmlElement = document.documentElement;
+
+        // Function to toggle QR code visibility and set its source
+        function toggleQrCode() {
+            const qrCodeImg = document.getElementById('websiteQrCodeImg');
+            const qrHintMessage = document.getElementById('qrHintMessage');
+            if (qrCodeImg && qrHintMessage) {
+                if (qrCodeImg.style.display === 'none') {
+                    // Set the QR code source only if it's not already set by this script
+                    if (!qrCodeImg.dataset.srcSetByJs) { 
+                        const websiteUrl = window.location.origin || 'https://example.com'; // Fallback for environments where origin might be null
+                        qrCodeImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(websiteUrl)}`;
+                        qrCodeImg.dataset.srcSetByJs = 'true'; // Mark that JS has set the src
+                    }
+                    qrCodeImg.style.display = 'block';
+                    qrHintMessage.style.display = 'block';
+                } else {
+                    qrCodeImg.style.display = 'none';
+                    qrHintMessage.style.display = 'none';
+                }
+            }
+        }
+
+        // Function to apply theme and update icon
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            } else {
+                htmlElement.classList.remove('dark');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            }
+        }
+
+        // Check localStorage for saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (prefersDark) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light');
+        }
+
+        // Theme toggle event listener
+        themeToggle.addEventListener('click', () => {
+            const currentThemeIsDark = htmlElement.classList.contains('dark');
+            if (currentThemeIsDark) {
+                applyTheme('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                applyTheme('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
